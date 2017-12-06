@@ -123,6 +123,10 @@ zio_init(void)
 	size_t c;
 	vmem_t *data_alloc_arena = NULL;
 
+	#ifdef _KERNEL
+		printk("Just trying to log in zio init\n");
+	#endif
+
 	zio_cache = kmem_cache_create("zio_cache",
 	    sizeof (zio_t), 0, NULL, NULL, NULL, NULL, NULL, 0);
 	zio_link_cache = kmem_cache_create("zio_link_cache",
