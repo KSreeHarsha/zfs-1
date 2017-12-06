@@ -286,7 +286,11 @@ zio_buf_alloc(size_t size)
 void *
 zio_data_buf_alloc(size_t size)
 {
-	size_t c = (size - 1) >> SPA_MINBLOCKSHIFT;
+    #ifdef _KERNEL
+        printk("Logging in zio data\n");
+    #endif
+
+    size_t c = (size - 1) >> SPA_MINBLOCKSHIFT;
 
 	VERIFY3U(c, <, SPA_MAXBLOCKSIZE >> SPA_MINBLOCKSHIFT);
 
